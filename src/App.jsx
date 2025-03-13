@@ -5,6 +5,7 @@ import Home from './components/Home'
 import About from './components/About'
 import Register from './components/Register'
 import NotFound from './components/NotFound'
+import Catalog from './components/Catalog'
 
 
 function App() {
@@ -13,9 +14,10 @@ function App() {
       < Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/catalog' element={<h1>Hello</h1>} />
+        <Route path='/catalog' element={<Catalog />} />
         <Route path='/about' element={<About />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<h1>hellohellohello</h1>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       
