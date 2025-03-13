@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Home from './components/Home'
 import About from './components/About'
 import Register from './components/Register'
+import NotFound from './components/NotFound'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path='/catalog' element={<h1>Hello</h1>} />
         <Route path='/about' element={<About />} />
         <Route path='/register' element={<Register />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       
     </div>

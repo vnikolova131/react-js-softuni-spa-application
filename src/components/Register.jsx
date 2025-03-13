@@ -135,8 +135,11 @@ export default function Register() {
             </div>
             <Label className="text-sm/6 text-gray-600">
               Already have an account? Click here to {' '}
-              <a path="/login" className="font-semibold text-indigo-600 text-[1.10rem]">
-              Log&nbsp;in
+              <a
+                href="/"
+                className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-blue-500 shadow-xs hover:bg-indigo-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Log In
               </a>
               
             </Label>
