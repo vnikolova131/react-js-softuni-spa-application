@@ -1,0 +1,19 @@
+.login-button {
+  color: #1c4ed6; 
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #b1bbd0; 
+  color: #1d41b8; 
+}
+
+.login-button:focus-visible {
+  outline: 2px solid #1257ed; 
+  outline-offset: 2px;
+}

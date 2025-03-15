@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import { Field, Label, Switch } from '@headlessui/react'
+import { Link } from 'react-router'
+import './registerStyling.css'
+import './register.css';
 
 export default function Register() {
   const [agreed, setAgreed] = useState(false)
@@ -131,28 +134,28 @@ export default function Register() {
             </div>
           </div>
           <Field className="flex gap-x-4 sm:col-span-2">
-            <div className="flex h-6 items-center">
-            </div>
-            <Label className="text-sm/6 text-gray-600">
-              Already have an account? Click here to {' '}
-              <a
-                href="/"
-                className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-blue-500 shadow-xs hover:bg-indigo-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Log In
-              </a>
-              
-            </Label>
-          </Field>
+  <div className="flex h-6 items-center">
+  </div>
+  <Label className="text-sm/6 text-gray-600">
+    Already have an account? Click here to {' '}
+    <Link
+      to="/login"
+      className="login-button"  
+    >
+      Log In
+    </Link>
+  </Label>
+</Field>
         </div>
         <div className="mt-10">
-          <button
-            type="submit"
-            className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Register
-          </button>
-        </div>
+  <button
+    type="submit"
+    className="register-button"  
+  >
+    Register
+  </button>
+</div>
+
       </form>
     </div>
   )
