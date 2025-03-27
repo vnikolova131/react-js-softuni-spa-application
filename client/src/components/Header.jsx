@@ -10,7 +10,7 @@ export default function Header() {
             { name: 'Catalog', path: '/catalog' },
             { name: 'About', path: '/about' },
             { name: 'Register', path: '/register' },
-            { name: 'Create', path: '/contacts' },
+            { name: 'Create', path: '/create' },
           ]
     
       const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
