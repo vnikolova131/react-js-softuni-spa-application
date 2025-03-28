@@ -9,10 +9,10 @@ import Register from './components/Register'
 import NotFound from './components/NotFound'
 import Catalog from './components/Catalog'
 import Login from './components/Login'
-//import useFetch from './hooks/useFetch'
+
 import Create from './components/Create';
 import Details from './components/Details';
-//const url = 'http://localhost:3030/jsonstore/cookbook'
+
 
 function App() {
  // const [pending, groups] = useFetch(url, []);
@@ -22,19 +22,12 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        
-        {/* Conditional rendering for loading state */}
-        { /*  {pending ? (
-          <Route path="/" element={<Spin />} />
-        ) : (
-          <Route path='/catalog' element={<Catalog groups={groups} />} />
-        )}*/}
         <Route path='/catalog' element={<Catalog />} />
         <Route path='/about' element={<About />} />
         <Route path='/register' element={<Register />} />
         <Route path='/create' element={<Create />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/details' element={<Details />} />
+        <Route path='/:groupId/details' element={<Details />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>

@@ -9,8 +9,10 @@ export default {
 
     return groups
     },
+    getOne(groupId) {
+    return request.get(`${baseUrl}/${groupId}`)
+    },
    create(groupData) {
             return request.post(baseUrl, groupData)
-           // return request('POST', baseUrl, groupData);
         } 
 };
