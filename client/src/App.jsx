@@ -9,14 +9,14 @@ import Register from './components/Register'
 import NotFound from './components/NotFound'
 import Catalog from './components/Catalog'
 import Login from './components/Login'
-import useFetch from './hooks/useFetch'
+//import useFetch from './hooks/useFetch'
 import Create from './components/Create';
-
-const url = 'http://localhost:3030/jsonstore/cookbook'
+import Details from './components/Details';
+//const url = 'http://localhost:3030/jsonstore/cookbook'
 
 function App() {
-  const [pending, groups] = useFetch(url, []);
-console.log(groups)
+ // const [pending, groups] = useFetch(url, []);
+//console.log(groups)
   return (
     <div className="bg-white">
       <Header />
@@ -34,6 +34,7 @@ console.log(groups)
         <Route path='/register' element={<Register />} />
         <Route path='/create' element={<Create />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/details' element={<Details />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>

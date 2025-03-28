@@ -1,15 +1,23 @@
-'use client'
-
 import { useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
-import { Field, Label, Switch } from '@headlessui/react'
-import { Link } from 'react-router'
+import { useNavigate } from 'react-router'
+
 import './registerStyling.css'
 import './create.css';
+import groupService from '../services/groupService'
 
 export default function Create() {
+    const navigate = useNavigate()
   const [agreed, setAgreed] = useState(false)
 
+  const submitAction = async (formData) => {
+    const groupData = Object.fromEntries(formData)
+
+
+    await groupService.create(groupData)
+    console.log(groupData)
+    navigate('/catalog')
+  }
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div
@@ -28,7 +36,7 @@ export default function Create() {
         <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">Create a Study Group</h2>
         <p className="mt-2 text-lg/8 text-gray-600">You didn't find a group that suits you? Create one!</p>
       </div>
-      <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
+      <form action={submitAction} className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         <div>
   <label htmlFor="group-name" className="block text-sm font-semibold text-gray-900">
@@ -59,13 +67,56 @@ export default function Create() {
             </div>
           </div>
           <div className="sm:col-span-2">
+  <label htmlFor="meeting-time" className="block text-sm/6 font-semibold text-gray-900">
+    Meeting Time
+  </label>
+  <div className="mt-2.5 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
+    <div>
+      <label htmlFor="weekday" className="block text-sm/6 font-semibold text-gray-900">
+        Weekday
+      </label>
+      <div className="mt-2.5">
+        <select
+          id="weekday"
+          name="weekday"
+          autoComplete="weekday"
+          className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+        >
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <label htmlFor="time" className="block text-sm/6 font-semibold text-gray-900">
+        Hour
+      </label>
+      <div className="mt-2.5">
+        <input
+          id="time"
+          name="time"
+          type="time"
+          autoComplete="time"
+          className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div className="sm:col-span-2">
             <label htmlFor="company" className="block text-sm/6 font-semibold text-gray-900">
               Subjects Covered
             </label>
             <div className="mt-2.5">
               <input
-                id="universityName"
-                name="universityName"
+                id="subjects"
+                name="subjects"
                 type="text"
                 autoComplete="organization"
                 className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
@@ -80,6 +131,20 @@ export default function Create() {
               <input
                 id="capacity"
                 name="capacity"
+                type="text"
+                autoComplete="organization"
+                className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+              />
+            </div>
+          </div>
+          <div className="sm:col-span-2">
+            <label htmlFor="capacity" className="block text-sm/6 font-semibold text-gray-900">
+              Location
+            </label>
+            <div className="mt-2.5">
+              <input
+                id="location"
+                name="location"
                 type="text"
                 autoComplete="organization"
                 className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
@@ -110,7 +175,20 @@ export default function Create() {
     />
   </div>
 </div>
-
+<div className="sm:col-span-2">
+            <label htmlFor="capacity" className="block text-sm/6 font-semibold text-gray-900">
+              Image
+            </label>
+            <div className="mt-2.5">
+              <input
+                id="urlImage"
+                name="urlImage"
+                type="url"
+                autoComplete="group"
+                className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+              />
+            </div>
+          </div>
             </div>
           </div>
         </div>

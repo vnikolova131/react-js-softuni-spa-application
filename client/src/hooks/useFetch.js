@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react';
+/*import { useEffect, useState} from 'react';
 
 export default function useFetch(url,defaultState) {
     const [state, setState] = useState(defaultState)
@@ -21,4 +21,4 @@ export default function useFetch(url,defaultState) {
    }, [url]);
 
    return [pending, state]
-}
+}*/

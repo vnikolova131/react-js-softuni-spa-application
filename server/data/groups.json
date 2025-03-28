@@ -1,31 +1,27 @@
 [
-	{
-	  "id": 1,
-	  "name": "Calculus",
-	  "level": "Intermediate",
-	  "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-01.jpg",
-	  "imageAlt": "Tall slender porcelain bottle with natural clay textured body and cork stopper."
-	},
-	{
-	  "id": 2,
-	  "name": "Chemistry",
-	  "level": "Advanced",
-	  "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-02.jpg",
-	  "imageAlt": "Olive drab green insulated bottle with flared screw lid and flat top."
-	},
-	{
-	  "id": 3,
-	  "name": "French",
-	  "level": "Beginner",
-	  "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-03.jpg",
-	  "imageAlt": "Person using a pen to cross a task off a productivity paper card."
-	},
-	{
-	  "id": 4,
-	  "name": "Machined Mechanical Pencil",
-	  "price": "$35",
-	  "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-04.jpg",
-	  "imageAlt": "Hand holding black machined steel mechanical pencil with brass tip and top."
-	}
+ {
+	"group-name": "Cool Math",
+	"description": "only for cool kids",
+	"weekday": "Monday",
+	"time": "16:20",
+	"subjects": "calc and algebra",
+	"capacity": "13",
+	"location": "Sofia, Bulgaria",
+	"level": "Intermediate",
+	"urlImage": "https://th.bing.com/th/id/OIP.KOkJDweqwibCho0tR83iLwHaHa?rs=1&pid=ImgDetMain",
+	"_id": "b84e131c-dfbe-46e7-aae8-c6687cc0f976"
+},
+{
+	"group-name": "Maths",
+	"description": "group to study math",
+	"weekday": "Monday",
+	"time": "15:00",
+	"subjects": "calc, algebra",
+	"capacity": "15",
+	"location": "Sofia",
+	"level": "Intermediate",
+	"urlImage": "https://th.bing.com/th/id/OIP.WbiRmQKzTqV3mktzhLNAsQHaD4?rs=1&pid=ImgDetMain",
+	"_id": "041d2800-dd65-450d-bcd2-4b42fa20e50a"
+}
   ]
   
