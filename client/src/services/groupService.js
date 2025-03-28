@@ -1,10 +1,13 @@
-import { request } from "../utils/request";
+import request from "../utils/request";
 
 const baseUrl = 'http://localhost:3030/jsonstore/groups'
 
 export default {
-    getAll() {
-        return request.get(baseUrl)
+    async getAll() {
+        const result = await request.get(baseUrl)
+    const groups = Object.values(result)
+
+    return groups
     },
    create(groupData) {
             return request.post(baseUrl, groupData)

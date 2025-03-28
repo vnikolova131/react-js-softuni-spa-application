@@ -1,6 +1,6 @@
 [
  {
-	"group-name": "Cool Math",
+	"name": "Cool Math",
 	"description": "only for cool kids",
 	"weekday": "Monday",
 	"time": "16:20",
@@ -12,7 +12,7 @@
 	"_id": "b84e131c-dfbe-46e7-aae8-c6687cc0f976"
 },
 {
-	"group-name": "Maths",
+	"name": "Maths",
 	"description": "group to study math",
 	"weekday": "Monday",
 	"time": "15:00",

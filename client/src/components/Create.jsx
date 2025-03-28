@@ -44,8 +44,8 @@ export default function Create() {
   </label>
   <div className="mt-2.5">
     <input
-      id="group-name"
-      name="group-name"
+      id="name"
+      name="name"
       type="text"
       autoComplete="given-group"
       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600"
