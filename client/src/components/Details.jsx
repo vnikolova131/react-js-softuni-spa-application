@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams,Link, useNavigate } from "react-router";
 import groupService from "../services/groupService";
 
 export default function GroupDetails() {
+  const navigate = useNavigate()
   const [group, setGroup] = useState({})
   const { groupId } = useParams(); 
 
@@ -13,6 +14,16 @@ export default function GroupDetails() {
     })();
   }, [groupId])
 
+  const gameDeleteClickHandler = async () => {
+    const hasConfirm = confirm(`Are you sure you want to delete ${group.name} study group?`)
+ 
+    if(!hasConfirm) {
+      return;
+    }
+    await groupService.delete(groupId)
+
+    navigate('/catalog');
+  }
 
   if (!group) {
     return (
@@ -76,18 +87,18 @@ export default function GroupDetails() {
               <p className="mt-2 text-gray-700">{group.level}</p>
             </div>
   
-            {/* Edit and Delete buttons */}
+           
             <div className="sm:col-span-2 mt-8 text-center space-x-4">
-              <button
+            <Link
+                to="/catalog"
                 className="px-8 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 shadow-md transition duration-300 transform hover:scale-105"
-                onClick={() => window.location.href = `/edit/${group._id}`} // Link to the Edit page (you can replace with your actual route)
-              >
+               >
                 Edit Group
-              </button>
+              </Link>
   
               <button
                 className="px-8 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 shadow-md transition duration-300 transform hover:scale-105"
-                onClick={() => handleDelete(group._id)} // Call a delete handler function
+                onClick={gameDeleteClickHandler}
               >
                 Delete Group
               </button>

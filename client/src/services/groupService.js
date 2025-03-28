@@ -14,5 +14,8 @@ export default {
     },
    create(groupData) {
             return request.post(baseUrl, groupData)
-        } 
+        },
+   delete(groupId) {
+            return request.delete(`${baseUrl}/${groupId}`)
+        }
 };
