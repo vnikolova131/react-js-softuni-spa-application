@@ -15,6 +15,9 @@ export default {
    create(groupData) {
             return request.post(baseUrl, groupData)
         },
+   edit(groupId, groupData) {
+            return request.put(`${baseUrl}/${groupId}`, {...groupData, _id: groupId })
+        },
    delete(groupId) {
             return request.delete(`${baseUrl}/${groupId}`)
         }

@@ -9,7 +9,7 @@ import Register from './components/Register'
 import NotFound from './components/NotFound'
 import Catalog from './components/Catalog'
 import Login from './components/Login'
-
+import Edit from './components/Edit'
 import Create from './components/Create';
 import Details from './components/Details';
 
@@ -28,6 +28,7 @@ function App() {
         <Route path='/create' element={<Create />} />
         <Route path='/login' element={<Login />} />
         <Route path='/:groupId/details' element={<Details />} />
+        <Route path='/:groupId/edit' element={<Edit />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>

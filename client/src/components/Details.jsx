@@ -90,7 +90,7 @@ export default function GroupDetails() {
            
             <div className="sm:col-span-2 mt-8 text-center space-x-4">
             <Link
-                to="/catalog"
+                to={`/${groupId}/edit`}
                 className="px-8 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 shadow-md transition duration-300 transform hover:scale-105"
                >
                 Edit Group
