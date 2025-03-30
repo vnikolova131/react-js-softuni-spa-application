@@ -1,26 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import request from "../utils/request";
-import { UserContext } from "../contexts/userContext";
+import useAuth from "../hooks/useAuth";
 
 const baseUrl = 'http://localhost:3030/data/groups'
-
-export default {
-    async getAll() {
-        const result = await request.get(baseUrl)
-    const groups = Object.values(result)
-
-    return groups
-    },
-    getOne(groupId) {
-    return request.get(`${baseUrl}/${groupId}`)
-    },
-   edit(groupId, groupData) {
-            return request.put(`${baseUrl}/${groupId}`, {...groupData, _id: groupId })
-        },
-   delete(groupId) {
-            return request.delete(`${baseUrl}/${groupId}`)
-        }
-};
 
 export const useGroups = () => {
     const [groups, setGroups] = useState([])
@@ -48,19 +30,40 @@ return {
 }
 }
 
-export const useCreateGroup = () => {
-    const { accessToken } = useContext(UserContext);
 
-    const options = {
-        headers: {
-            'X-Authorization': accessToken,
-        }
-    }
+export const useCreateGroup = () => {
+    const { request } = useAuth();
+
+
      const create = (groupData) => {
-        return request.post(baseUrl, groupData, options)
+        return request.post(baseUrl, groupData)
     }
 
     return {
         create,
     }
 }
+
+export const useEditGroup = () => {
+    const {request} = useAuth();
+
+    const edit = (groupId, groupData) => 
+        request.put(`${baseUrl}/${groupId}`, {...groupData, _id: groupId })
+    
+    return {
+        edit,
+    }
+};
+
+
+
+export const useDeleteGroup = () => {
+    const {request} = useAuth();
+
+    const deleteGroup = (groupId) => 
+        request.delete(`${baseUrl}/${groupId}`)
+    
+    return {
+        deleteGroup,
+    }
+};

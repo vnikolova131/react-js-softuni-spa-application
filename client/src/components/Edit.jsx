@@ -1,22 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router';
-import groupService from "../services/groupService"; 
+import { useNavigate, useParams } from 'react-router'; 
+import { useEditGroup, useGroup } from '../api/groupApi';
 
 export default function EditGroup() {
   const navigate = useNavigate();
   const { groupId } = useParams();  
 
-  const [group, setGroup] = useState({});
+  const {group} = useGroup(groupId);
+  const {edit} = useEditGroup();
 
-  useEffect(() => {
-    groupService.getOne(groupId)  
-      .then(setGroup)
-  }, [groupId]);
 
 const formAction = async (formData) => {
     const groupData = Object.fromEntries(formData)
 
-    await groupService.edit(groupId, groupData)
+   await edit(groupId, groupData)
 
     navigate(`/${groupId}/details`)
 }
