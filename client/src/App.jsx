@@ -15,6 +15,7 @@ import Edit from './components/Edit'
 import Create from './components/Create';
 import Details from './components/Details';
 import { useState } from 'react';
+import Logout from './components/Logout';
 
 
 function App() {
@@ -35,6 +36,7 @@ const userLoginHandler = (resultData) => {
         <Route path='/register' element={<Register />} />
         <Route path='/create' element={<Create />} />
         <Route path='/login' element={<Login/>} />
+        <Route path='/logout' element={<Logout/>} />
         <Route path='/:groupId/details' element={<Details />} />
         <Route path='/:groupId/edit' element={<Edit />} />
         <Route path='*' element={<NotFound />} />

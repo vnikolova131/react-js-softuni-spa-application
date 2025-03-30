@@ -11,6 +11,7 @@ export default function Header() {
             { name: 'About', path: '/about' },
             { name: 'Register', path: '/register' },
             { name: 'Create', path: '/create' },
+            { name: 'Logout', path: '/logout' },
           ]
     
       const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
