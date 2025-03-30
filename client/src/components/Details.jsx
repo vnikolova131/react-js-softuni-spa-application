@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams,Link, useNavigate } from "react-router";
 import { useDeleteGroup, useGroup } from "../api/groupApi";
+import useAuth from "../hooks/useAuth";
 
 export default function GroupDetails() {
   const navigate = useNavigate()
   const { groupId } = useParams(); 
+  const { email, _id: userId } = useAuth()
 
   const { group } = useGroup(groupId)
   const { deleteGroup } = useDeleteGroup()
@@ -28,6 +30,8 @@ export default function GroupDetails() {
     );
   }
 
+
+  const isOwner = userId === group._ownerId
   return (
     <div
       className="bg-white px-6 py-24 sm:py-32 lg:px-8"
@@ -82,7 +86,7 @@ export default function GroupDetails() {
               <p className="mt-2 text-gray-700">{group.level}</p>
             </div>
   
-           
+           {isOwner && (
             <div className="sm:col-span-2 mt-8 text-center space-x-4">
             <Link
                 to={`/${groupId}/edit`}
@@ -98,6 +102,7 @@ export default function GroupDetails() {
                 Delete Group
               </button>
             </div>
+            )}
           </div>
         </div>
       </div>
