@@ -1,18 +1,28 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link} from 'react-router'
+import { UserContext } from '../contexts/userContext'
 
 export default function Header() {
 
-        const navigation = [
-            { name: 'Home', path: '/' },
-            { name: 'Catalog', path: '/catalog' },
-            { name: 'About', path: '/about' },
-            { name: 'Register', path: '/register' },
-            { name: 'Create', path: '/create' },
-            { name: 'Logout', path: '/logout' },
-          ]
+  const { email } = useContext(UserContext)
+  let navigation = [
+    { name: 'Home', path: '/' },
+    { name: 'Catalog', path: '/catalog' },
+    { name: 'About', path: '/about' },
+  ];
+  
+  navigation = email 
+    ? [
+        ...navigation,
+        { name: 'Create', path: '/create' }
+      ] 
+    : [
+        ...navigation,
+        { name: 'Register', path: '/register' }
+      ];
+
     
       const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     
@@ -50,11 +60,21 @@ export default function Header() {
                   </Link>
                   ))}
                 </div>
-                <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                  <Link to="/login" className="text-sm/6 font-semibold text-gray-900">
-                    Log in <span aria-hidden="true">&rarr;</span>
+                   { email 
+                        ? (
+                          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                  <Link to="/logout" className="text-sm/6 font-semibold text-gray-900">
+                    Log out <span aria-hidden="true">&rarr;</span> 
                   </Link>
-                </div>
+                  </div>
+                    )
+                    : (
+                      <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                      <Link to="/login" className="text-sm/6 font-semibold text-gray-900">
+                      Log in <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                    </div>
+                    )}
               </nav>
               <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
                 <div className="fixed inset-0 z-50" />
@@ -90,14 +110,32 @@ export default function Header() {
                           </a>
                         ))}
                       </div>
-                      <div className="py-6">
-                        <Link
-                          to="/login"
+                      
+                        { email 
+                        ? (
+                          <div className="py-6">
+                          <Link
+                          to="/logout"
                           className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-80"
                         >
-                          Log in
+                          Logout
+                          
                         </Link>
+                        </div>
+                        )
+                      : (
+                        <div className="py-6">
+                        <Link
+                        to="/login"
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-80"
+                      >
+                        Log in
+                        
+                      </Link>
                       </div>
+
+                      )}
+                      
                     </div>
                   </div>
                 </DialogPanel>
