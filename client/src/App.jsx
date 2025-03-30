@@ -1,7 +1,9 @@
 import { Routes, Route} from 'react-router'
 import {Spin } from "antd";
-
 import './App.css'
+
+import { UserContext } from './contexts/userContext';
+
 import Header from './components/Header'
 import Home from './components/Home'
 import About from './components/About'
@@ -16,12 +18,14 @@ import { useState } from 'react';
 
 
 function App() {
- const [email, setEmail] = useState();
- 
-const userLoginHandler = (authData) => {
-  setEmail(authData.email)
+ const [authData, setAuthData] = useState({});
+
+const userLoginHandler = (resultData) => {
+  setAuthData(resultData)
 }
+
   return (
+    <UserContext.Provider value={{...authData, userLoginHandler}}>
     <div className="bg-white">
       <Header />
       <Routes>
@@ -30,12 +34,13 @@ const userLoginHandler = (authData) => {
         <Route path='/about' element={<About />} />
         <Route path='/register' element={<Register />} />
         <Route path='/create' element={<Create />} />
-        <Route path='/login' element={<Login onLogin={userLoginHandler}/>} />
+        <Route path='/login' element={<Login/>} />
         <Route path='/:groupId/details' element={<Details />} />
         <Route path='/:groupId/edit' element={<Edit />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
+    </UserContext.Provider>
   );
 }
 

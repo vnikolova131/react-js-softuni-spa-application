@@ -1,12 +1,14 @@
 'use client'
 
-import { useActionState, useState } from 'react'
+import { useActionState, useContext, useState } from 'react'
 import { Field, Label, Switch } from '@headlessui/react'
 import { Link, useNavigate } from 'react-router'
 import { useLogin } from '../api/authApi'
+import { UserContext } from '../contexts/userContext'
 
-export default function Login({onLogin,}) {
+export default function Login() {
   const { login } = useLogin()
+  const {userLoginHandler} = useContext(UserContext)
   const navigate = useNavigate();
 
   const loginHandler = async (_, formData) => {
@@ -14,7 +16,7 @@ export default function Login({onLogin,}) {
 
     const authData = await login(values.email, values.password);
 
-    onLogin(authData)
+    userLoginHandler(authData)
 
     navigate('/catalog')
 
