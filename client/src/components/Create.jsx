@@ -1,21 +1,20 @@
 import { useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import { useNavigate } from 'react-router'
+import { useCreateGroup } from '../api/groupApi';
 
 import './registerStyling.css'
 import './create.css';
-import groupService from '../services/groupService'
 
 export default function Create() {
     const navigate = useNavigate()
-  const [agreed, setAgreed] = useState(false)
+  const { create } = useCreateGroup()
 
   const submitAction = async (formData) => {
     const groupData = Object.fromEntries(formData)
 
 
-    await groupService.create(groupData)
-    console.log(groupData)
+   await create(groupData)
     navigate('/catalog')
   }
   return (
