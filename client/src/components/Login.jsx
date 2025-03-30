@@ -1,14 +1,26 @@
 'use client'
 
-import { useState } from 'react'
+import { useActionState, useState } from 'react'
 import { Field, Label, Switch } from '@headlessui/react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { useLogin } from '../api/authApi'
 
-export default function Login() {
+export default function Login({onLogin,}) {
+  const { login } = useLogin()
+  const navigate = useNavigate();
 
-  const loginAction = (formData) => {
-    const email = formData.get('email')
+  const loginHandler = async (_, formData) => {
+    const values = Object.fromEntries(formData)
+
+    const authData = await login(values.email, values.password);
+
+    onLogin(authData)
+
+    navigate('/catalog')
+
+    //return values;
   }
+  const [_, loginAction, isPending ] = useActionState(loginHandler, {email: '', password: ''})
 
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -77,6 +89,7 @@ export default function Login() {
           <button
             type="submit"
             className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          disabled={isPending}
           >
             Login
           </button>

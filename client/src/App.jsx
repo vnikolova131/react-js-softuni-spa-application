@@ -12,11 +12,15 @@ import Login from './components/Login'
 import Edit from './components/Edit'
 import Create from './components/Create';
 import Details from './components/Details';
+import { useState } from 'react';
 
 
 function App() {
- // const [pending, groups] = useFetch(url, []);
-//console.log(groups)
+ const [email, setEmail] = useState();
+ 
+const userLoginHandler = (authData) => {
+  setEmail(authData.email)
+}
   return (
     <div className="bg-white">
       <Header />
@@ -26,7 +30,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/register' element={<Register />} />
         <Route path='/create' element={<Create />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login onLogin={userLoginHandler}/>} />
         <Route path='/:groupId/details' element={<Details />} />
         <Route path='/:groupId/edit' element={<Edit />} />
         <Route path='*' element={<NotFound />} />
