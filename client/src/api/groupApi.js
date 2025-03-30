@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import request from "../utils/request";
 import { UserContext } from "../contexts/userContext";
 
@@ -21,6 +21,19 @@ export default {
             return request.delete(`${baseUrl}/${groupId}`)
         }
 };
+
+export const useGroups = () => {
+    const [groups, setGroups] = useState([])
+    
+useEffect(() => {
+    request.get(baseUrl)
+    .then(setGroups)
+}, [])
+
+return {
+    groups,
+}
+}
 
 export const useCreateGroup = () => {
     const { accessToken } = useContext(UserContext);
