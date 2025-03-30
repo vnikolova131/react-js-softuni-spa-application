@@ -35,6 +35,19 @@ return {
 }
 }
 
+export const useGroup = (groupId) => {
+    const [group, setGroup] = useState([])
+    
+useEffect(() => {
+    request.get(`${baseUrl}/${groupId}`)
+    .then(setGroup)
+}, [])
+
+return {
+    group,
+}
+}
+
 export const useCreateGroup = () => {
     const { accessToken } = useContext(UserContext);
 

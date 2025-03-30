@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams,Link, useNavigate } from "react-router";
 import groupService from "../services/groupService";
+import { useGroup } from "../api/groupApi";
 
 export default function GroupDetails() {
   const navigate = useNavigate()
-  const [group, setGroup] = useState({})
   const { groupId } = useParams(); 
 
-  useEffect(() => {
-    (async () => {
-      const result = await groupService.getOne(groupId)
-      setGroup(result)
-    })();
-  }, [groupId])
+  const { group } = useGroup(groupId)
 
   const gameDeleteClickHandler = async () => {
     const hasConfirm = confirm(`Are you sure you want to delete ${group.name} study group?`)
