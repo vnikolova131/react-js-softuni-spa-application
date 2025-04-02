@@ -16,6 +16,7 @@ import Create from './components/Create';
 import Details from './components/Details';
 import { useState } from 'react';
 import Logout from './components/Logout';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -32,6 +33,7 @@ const userLogoutHandler = () => {
   return (
     <UserContext.Provider value={{...authData, userLoginHandler,userLogoutHandler }}>
     <div className="bg-white">
+      
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -45,6 +47,7 @@ const userLogoutHandler = () => {
         <Route path='/:groupId/edit' element={<Edit />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
+      <ToastContainer/>
     </div>
     </UserContext.Provider>
   );

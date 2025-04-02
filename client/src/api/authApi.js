@@ -5,7 +5,6 @@ import { UserContext } from "../contexts/userContext";
 const baseUrl = `http://localhost:3030/users`
 
 export const useLogin = () => {
-    //const abortRef = useRef(new AbortController());
 
     const login = async (email, password) => {
       const result = await request.post(`${baseUrl}/login`, { email,password });
@@ -13,11 +12,6 @@ export const useLogin = () => {
       return result;
     }
 
-   /* useEffect(() => {
-        const abortController = abortRef.current
-
-        return () => abortController.abort()
-    }),[];*/
 
     return {
         login,

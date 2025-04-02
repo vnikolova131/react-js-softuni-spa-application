@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import { useNavigate } from 'react-router'
 import { useCreateGroup } from '../api/groupApi';
-
 import './registerStyling.css'
 import './create.css';
 

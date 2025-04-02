@@ -5,22 +5,29 @@ import { Field, Label, Switch } from '@headlessui/react'
 import { Link, useNavigate } from 'react-router'
 import { useLogin } from '../api/authApi'
 import { UserContext } from '../contexts/userContext'
+import { ToastContainer, toast} from 'react-toastify'
 
 export default function Login() {
   const { login } = useLogin()
   const {userLoginHandler} = useContext(UserContext)
   const navigate = useNavigate();
+  const { email } = useContext(UserContext)
 
   const loginHandler = async (_, formData) => {
     const values = Object.fromEntries(formData)
 
-    const authData = await login(values.email, values.password);
+    try {
+      const authData = await login(values.email, values.password);
+      userLoginHandler(authData)
+      
+      toast('Login successful!',{type: "success"})
+      navigate('/catalog')
 
-    userLoginHandler(authData)
+    } catch (err) {
+        toast(err.message,{type: "error"})
+    }
 
-    navigate('/catalog')
 
-    //return values;
   }
   const [_, loginAction, isPending ] = useActionState(loginHandler, {email: '', password: ''})
 
