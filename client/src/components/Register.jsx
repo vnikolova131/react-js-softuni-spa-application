@@ -7,12 +7,12 @@ import { Link, useNavigate } from 'react-router'
 import './registerStyling.css'
 import './register.css';
 import { useRegister } from '../api/authApi'
-import { UserContext } from '../contexts/userContext'
+import { UserContext, useUserContext } from '../contexts/userContext'
 
 export default function Register() {
   const navigate = useNavigate()
   const {register } = useRegister();
-  const { userLoginHandler } = useContext(UserContext)
+  const { userLoginHandler } = useUserContext();
 
   const [agreed, setAgreed] = useState(false)
   const registerHandler = async (formData) => {

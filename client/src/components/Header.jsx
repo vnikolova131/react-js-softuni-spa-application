@@ -7,21 +7,21 @@ import { UserContext } from '../contexts/userContext'
 export default function Header() {
 
   const { email } = useContext(UserContext)
-  let navigation = [
-    { name: 'Home', path: '/' },
-    { name: 'Catalog', path: '/catalog' },
-    { name: 'About', path: '/about' },
-  ];
-  
-  navigation = email 
-    ? [
-        ...navigation,
-        { name: 'Create', path: '/create' }
-      ] 
-    : [
-        ...navigation,
-        { name: 'Register', path: '/register' }
-      ];
+let navigation = [
+  { name: 'Home', path: '/' },
+  { name: 'Catalog', path: '/catalog' },
+  { name: 'About', path: '/about' },
+];
+
+navigation = email 
+  ? [
+      ...navigation,
+      { name: 'Create', path: '/create' }
+    ] 
+  : [
+      ...navigation,
+      { name: 'Register', path: '/register' }
+    ];
 
     
       const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

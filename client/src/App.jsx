@@ -1,8 +1,7 @@
 import { Routes, Route} from 'react-router'
-import {Spin } from "antd";
 import './App.css'
 
-import { UserContext } from './contexts/userContext';
+import { UserContext, useUserContext } from './contexts/userContext';
 
 import Header from './components/Header'
 import Home from './components/Home'
@@ -14,14 +13,17 @@ import Login from './components/Login'
 import Edit from './components/Edit'
 import Create from './components/Create';
 import Details from './components/Details';
-import { useState } from 'react';
+
 import Logout from './components/Logout';
 import { ToastContainer } from 'react-toastify';
 import usePersistedState from './hooks/usePersistedState';
+import UserProvider from './providers/UserProvider';
 
+import AuthGuard from './components/guards/AuthGuard'
+import GuestGuard from './components/guards/GuestGuard'
 
 function App() {
- const [authData, setAuthData] = usePersistedState('auth', {});
+ /*const [authData, setAuthData] = usePersistedState('auth', {});
 
 const userLoginHandler = (resultData) => {
   setAuthData(resultData)
@@ -29,10 +31,10 @@ const userLoginHandler = (resultData) => {
 
 const userLogoutHandler = () => {
   setAuthData({});
-}
+}*/
 
   return (
-    <UserContext.Provider value={{...authData, userLoginHandler,userLogoutHandler }}>
+    <UserProvider>
     <div className="bg-white">
       
       <Header />
@@ -40,43 +42,22 @@ const userLogoutHandler = () => {
         <Route path='/' element={<Home />} />
         <Route path='/catalog' element={<Catalog />} />
         <Route path='/about' element={<About />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/create' element={<Create />} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/logout' element={<Logout/>} />
         <Route path='/:groupId/details' element={<Details />} />
-        <Route path='/:groupId/edit' element={<Edit />} />
         <Route path='*' element={<NotFound />} />
+        <Route element={<AuthGuard />}>
+          <Route path='/create' element={<Create />} />
+          <Route path='/logout' element={<Logout/>} />
+          <Route path='/:groupId/edit' element={<Edit />} />
+        </Route>
+        <Route element={<GuestGuard />}>
+          <Route path='/login' element={<Login/>} />
+          <Route path='/register' element={<Register />} />
+          </Route>
       </Routes>
       <ToastContainer/>
     </div>
-    </UserContext.Provider>
+    </UserProvider>
   );
 }
 
 export default App
-
-/*function App() {
-  const [pending, groups] = useFetch(url);
-
-Spin
-  return (
-    <div className="bg-white">
-      < Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <>
-        <pending
-        ? <Spin />
-        : <Route path='/catalog' element={<Catalog groups={groups}/>} />
-        }
-        </>
-        <Route path='/about' element={<About />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-      
-    </div>
-  )
-}*/
