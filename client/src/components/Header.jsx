@@ -3,24 +3,28 @@ import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link} from 'react-router'
 import { UserContext } from '../contexts/userContext'
+import useAuth from '../hooks/useAuth'
 
 export default function Header() {
-
-  const { email } = useContext(UserContext)
+const { email, isAuthenticated } = useAuth();
+  //const { email } = useContext(UserContext)
 let navigation = [
   { name: 'Home', path: '/' },
   { name: 'Catalog', path: '/catalog' },
   { name: 'About', path: '/about' },
+  
 ];
 
-navigation = email 
+navigation = isAuthenticated 
   ? [
       ...navigation,
-      { name: 'Create', path: '/create' }
+      { name: 'Create', path: '/create' },  
+     { name: 'Log out', path: '/logout' }
     ] 
   : [
       ...navigation,
-      { name: 'Register', path: '/register' }
+      { name: 'Register', path: '/register' },
+      { name: 'Log in', path: '/login' }
     ];
 
     
@@ -60,21 +64,6 @@ navigation = email
                   </Link>
                   ))}
                 </div>
-                   { email 
-                        ? (
-                          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                  <Link to="/logout" className="text-sm/6 font-semibold text-gray-900">
-                    Log out <span aria-hidden="true">&rarr;</span> 
-                  </Link>
-                  </div>
-                    )
-                    : (
-                      <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                      <Link to="/login" className="text-sm/6 font-semibold text-gray-900">
-                      Log in <span aria-hidden="true">&rarr;</span>
-                    </Link>
-                    </div>
-                    )}
               </nav>
               <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
                 <div className="fixed inset-0 z-50" />
@@ -110,32 +99,6 @@ navigation = email
                           </a>
                         ))}
                       </div>
-                      
-                        { email 
-                        ? (
-                          <div className="py-6">
-                          <Link
-                          to="/logout"
-                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-80"
-                        >
-                          Logout
-                          
-                        </Link>
-                        </div>
-                        )
-                      : (
-                        <div className="py-6">
-                        <Link
-                        to="/login"
-                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-80"
-                      >
-                        Log in
-                        
-                      </Link>
-                      </div>
-
-                      )}
-                      
                     </div>
                   </div>
                 </DialogPanel>
