@@ -17,10 +17,11 @@ import Details from './components/Details';
 import { useState } from 'react';
 import Logout from './components/Logout';
 import { ToastContainer } from 'react-toastify';
+import usePersistedState from './hooks/usePersistedState';
 
 
 function App() {
- const [authData, setAuthData] = useState({});
+ const [authData, setAuthData] = usePersistedState('auth', {});
 
 const userLoginHandler = (resultData) => {
   setAuthData(resultData)
